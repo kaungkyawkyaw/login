@@ -15,10 +15,15 @@ export const authApi = createApi({
     }),
     invalidatesTags:["authApi"]
    }),
-   login:(builder)
+   getlogin:builder.mutation({
+    query:(user)=>({
+      url:`/login`,
+      method: "POST",
+      body: user
+    }),
+    invalidatesTags:["authApi"]
+   }),
   }),
 })
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
-export const { useRegisterMutation } = authApi
+export const { useRegisterMutation, useGetloginMutation } = authApi
