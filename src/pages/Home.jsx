@@ -1,10 +1,16 @@
+import Cards from "../components/Cards"
+import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
+import SectionOne from  "../components/SectionOne"
 
 const Home = () => {
   return (
     <>
+    <div className=" relative">
+      <SectionOne/>
       <Navbar/>
-    <div>
+      <Cards/>
+      <Footer/>
     </div>
     </>
   )

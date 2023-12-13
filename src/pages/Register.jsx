@@ -1,4 +1,4 @@
-import { Button, Loader, PasswordInput, TextInput } from "@mantine/core";
+import { Loader, PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useRegisterMutation } from "../feature/api/authApi";
 import { Link, useNavigate } from "react-router-dom";
@@ -50,6 +50,7 @@ const Register = () => {
               <div className="flex w-full flex-col justify-center gap-3 items-center">
               <TextInput
                 withAsterisk
+                autoFocus
                 label="Username"
                 className=" w-full"
                 placeholder="Username"
@@ -87,7 +88,7 @@ const Register = () => {
                     type="submit"
                     disabled={dbutton}
                   >
-                  Login
+                  Submit
                   </button>
                 )}
               </div>

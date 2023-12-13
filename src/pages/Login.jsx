@@ -26,6 +26,7 @@ const Login = () => {
         value.length < 2 ? "Name must have at least 2 letters" : null,
     },
   });
+  
   return (
     <>
       <div className=" flex justify-center items-center h-screen">
@@ -55,7 +56,8 @@ const Login = () => {
             <div className="flex w-full flex-col justify-center gap-3 items-center">
               <TextInput
                 withAsterisk
-                className=" w-full"
+                autoFocus
+                className=" w-full fo"
                 label="Username"
                 placeholder="Username"
                 {...form.getInputProps("username")}
@@ -68,10 +70,10 @@ const Login = () => {
                 {...form.getInputProps("password")}
               />
             </div>
-            <div className=" flex justify-center items-center">
-              <p >Account? <Link to={"/register"}><span className=" text-sm text-blue-600">Register</span></Link> </p>
+            <div className=" flex select-none justify-center items-center">
+              <p >Don't have an Account? <Link to={"/register"}><span className=" text-sm text-blue-600">Register</span></Link> </p>
             </div>
-            <div className="flex justify-center w-[90%] mx-auto text-white font-semibold bg-blue-500 py-1 rounded-xl active:bg-blue-400 items-center">
+            <div className="flex select-none justify-center w-[90%] mx-auto text-white font-semibold bg-blue-500 py-1 rounded-xl active:bg-blue-400 items-center">
               {isloading ? (
                 <button
                   className=" flex justify-center place-items-baseline"
