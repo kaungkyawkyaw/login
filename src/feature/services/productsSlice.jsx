@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
   console.log(storeItems,"localstorage")
 const initialState = {
     itemlays:[],
-    products:storeItems?[...storeItems]:[],
+    products:storeItems?storeItems:[],
     search:"",
 }
 
