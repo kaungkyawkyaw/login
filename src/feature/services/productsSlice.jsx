@@ -31,11 +31,30 @@ export const productsSlice = createSlice({
     removecart:(state,{payload})=>{
       state.products=state.products.filter((item)=>item._id!==payload._id)
       localStorage.setItem("userproduct",JSON.stringify(state.products))
+    },
+    increase:(state,{payload})=>{
+      state.products?.map((product)=>{
+        if (product._id === payload._id) {
+          return {...product,qty:product.qty+=1}
+        }else{
+          return product;
+        }
+      })
+    },
+    decrease:(state,{payload})=>{
+      state.products?.map((product)=>{
+        if (product._id === payload._id && product.qty>1) {
+          return {...product,qty:product.qty-=1}
+        }else{
+          return product;
+        }
+      })
     }
+
    
 
   },
 })
 
-export const { itemmyar,addtocart,setSearch,removecart  } = productsSlice.actions
+export const { itemmyar,addtocart,setSearch,removecart,increase,decrease  } = productsSlice.actions
 export default productsSlice.reducer

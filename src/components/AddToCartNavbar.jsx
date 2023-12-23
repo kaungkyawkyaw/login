@@ -18,7 +18,6 @@ const Navbar = () => {
         dispatch(removeuser());
         nav("/login")
     }
-    const se=<CiSearch />
   return (
     <>
     <div className=" sticky top-0 z-50 bg-gradient-to-r backdrop-blur py-2">
@@ -28,7 +27,6 @@ const Navbar = () => {
         </Link>
         <div className=" flex justify-center items-center gap-7 items-center">
           <div className=" flex justify-center gap-2 items-center">
-            <Input variant="filled" value={search} onChange={(e)=>dispatch(setSearch(e.target.value))} leftSection={se} placeholder="Input component" />
             <Link to={"/addtocart"}>
             <div className=" relative">
               <AiOutlineShoppingCart className=" text-slate-500 text-2xl" />

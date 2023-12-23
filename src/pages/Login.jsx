@@ -26,73 +26,79 @@ const Login = () => {
         value.length < 2 ? "Name must have at least 2 letters" : null,
     },
   });
-  
+
   return (
     <>
       <div className=" flex justify-center items-center h-screen">
         <fieldset className=" border rounded-lg shadow-md p-7">
-        <legend className=" text-2xl -translate-y-1 font-bold">Login</legend>
-        <form 
-          onSubmit={form.onSubmit(async (values) => {
-            try {
-              setDbutton(true);
-              setIsLoading(true);
-              const { data } = await getlogin(values);
-              setIsLoading(false);
+          <legend className=" text-2xl -translate-y-1 font-bold">Login</legend>
+          <form
+            onSubmit={form.onSubmit(async (values) => {
+              try {
+                setDbutton(true);
+                setIsLoading(true);
+                const { data } = await getlogin(values);
+                setIsLoading(false);
 
-              console.log(data, "login");
-              dispatch(adduser(data));
-              if (data?.accessToken && !data?.isAdmin) {
-                return nav("/");
-              } else if (isAdmin) {
-                return nav("/admin");
+                console.log(data, "login");
+                dispatch(adduser(data));
+                if (data?.accessToken && !data?.isAdmin) {
+                  return nav("/");
+                } else if (isAdmin) {
+                  return nav("/admin");
+                }
+              } catch (error) {
+                console.log(error);
               }
-            } catch (error) {
-              console.log(error);
-            }
-          })}
-        >
-          <div className=" flex flex-col justify-evenly w-[250px] gap-10  items-center">
-            <div className="flex w-full flex-col justify-center gap-3 items-center">
-              <TextInput
-                withAsterisk
-                autoFocus
-                className=" w-full fo"
-                label="Username"
-                placeholder="Username"
-                {...form.getInputProps("username")}
-              />
-              <PasswordInput
-                withAsterisk
-                className=" w-full"
-                label="Password"
-                placeholder="password"
-                {...form.getInputProps("password")}
-              />
+            })}
+          >
+            <div className=" flex flex-col justify-evenly w-[250px] gap-10  items-center">
+              <div className="flex w-full flex-col justify-center gap-3 items-center">
+                <TextInput
+                  withAsterisk
+                  autoFocus
+                  className=" w-full fo"
+                  label="Username"
+                  placeholder="Username"
+                  {...form.getInputProps("username")}
+                />
+                <PasswordInput
+                  withAsterisk
+                  className=" w-full"
+                  label="Password"
+                  placeholder="password"
+                  {...form.getInputProps("password")}
+                />
+              </div>
+              <div className=" flex select-none justify-center items-center">
+                <p>
+                  Don't have an Account?
+                  <Link to={"/register"}>
+                    <span className=" text-sm text-blue-600">Register</span>
+                  </Link>
+                </p>
+              </div>
+              <div className="flex select-none justify-center w-[90%] mx-auto text-white font-semibold bg-blue-500 py-1 rounded-xl active:bg-blue-400 items-center">
+                {isloading ? (
+                  <button
+                    className=" flex justify-center place-items-baseline"
+                    disabled={dbutton}
+                  >
+                    <span>Loading</span>
+                    <Loader
+                      color="rgba(255, 255, 255, 1)"
+                      size="sm"
+                      type="dots"
+                    />
+                  </button>
+                ) : (
+                  <button type="submit" disabled={dbutton}>
+                    Login
+                  </button>
+                )}
+              </div>
             </div>
-            <div className=" flex select-none justify-center items-center">
-              <p >Don't have an Account? <Link to={"/register"}><span className=" text-sm text-blue-600">Register</span></Link> </p>
-            </div>
-            <div className="flex select-none justify-center w-[90%] mx-auto text-white font-semibold bg-blue-500 py-1 rounded-xl active:bg-blue-400 items-center">
-              {isloading ? (
-                <button
-                  className=" flex justify-center place-items-baseline"
-                  disabled={dbutton}
-                >
-                  <span>Loading</span>
-                  <Loader color="rgba(255, 255, 255, 1)" size="sm" type="dots" />
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  disabled={dbutton}
-                >
-                Login
-                </button>
-              )}
-            </div>
-          </div>
-        </form>
+          </form>
         </fieldset>
       </div>
     </>

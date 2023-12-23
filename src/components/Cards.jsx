@@ -11,7 +11,7 @@ const Cards = () => {
   const { search } = useSelector((state) => state.products);
   const { itemlays: userproducts } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  console.log();
+  // console.log();
 
   useEffect(() => {
     dispatch(itemmyar(data));
